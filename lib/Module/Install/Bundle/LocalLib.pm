@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use base qw(Module::Install::Base);
 
-our $VERSION = '0.00004';
+our $VERSION = '0.00005';
 
 sub bundle_local_lib {
     my ($self, @args) = @_;
@@ -18,10 +18,10 @@ sub bundle_local_lib {
     $lib ||= 'extlib';
     $self->Makefile->postamble(<<EOM);
 bundle_local_lib: metafile
-\t\$(NOECHO) cpanm --skip-installed --locallib=$lib --installdeps .
+\t\$(NOECHO) cpanm --skip-installed --local-lib=$lib --installdeps .
 
 bundle_local_lib_fast: metafile
-\t\$(NOECHO) cpanm --notest --skip-installed --locallib=$lib --installdeps .
+\t\$(NOECHO) cpanm --notest --skip-installed --local-lib=$lib --installdeps .
 EOM
 }
 
